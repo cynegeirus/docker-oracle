@@ -1,0 +1,18 @@
+services:
+  oracle-xe:
+    image: gvenzl/oracle-xe:21-slim
+    container_name: oracle-xe
+    hostname: oracle-xe
+    restart: always
+    ports:
+      - "1521:1521"   # Oracle Listener
+    environment:
+      ORACLE_PASSWORD: "ChangeMeStrong!"   # SYS / SYSTEM password
+      ORACLE_DATABASE: "XEPDB1"            # Default Pluggable DB
+      ORACLE_CHARACTERSET: "AL32UTF8"      # Unicode charset
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+
+volumes:
+  oracle-data:
+    name: oracle-xe-data
